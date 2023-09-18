@@ -16,17 +16,17 @@ public:
           return NULL;
       }  
       //Step 0-For LeetCode only(Check agar remaining node k se kam hai to       bina     reverse ke as it is lauta do.
-              ListNode* check = head;
-        int count = 0;
-        while (check != NULL && count < k) {
+      ListNode* check = head;
+      int count = 0;
+      while (check != NULL && count < k) {
             check = check->next;
             count++;
-        }
+      }
 
         // If there are less than k nodes left, do not reverse
-        if (count < k) {
+      if (count < k) {
             return head;
-        }  
+      }  
       //Step 1 - Reverse k nodes
       ListNode* prev =NULL;
       ListNode* curr =head;
