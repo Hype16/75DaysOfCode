@@ -8,18 +8,41 @@
  */
 class Solution {
 public:
- 
-    ListNode *getIntersectionNode(ListNode *head1, ListNode *head2) {
-    unordered_set<ListNode*> st;
-    while(head1 != NULL) {
-       st.insert(head1);
-       head1 = head1->next;
-    }
-    while(head2 != NULL) {
-        if(st.find(head2) != st.end()) return head2;
-        head2 = head2->next;
-    }
-    return NULL;
 
-}
+    int length(ListNode* head){
+        int len = 0;
+        while(head){
+            len++;
+            head = head->next;
+        }
+        return len;
+    }
+
+    ListNode *getIntersectionNode(ListNode *headA, ListNode *headB) {
+
+        
+        int lenA = length(headA);
+        int lenB = length(headB);
+
+        //Finding number of elements to skip in the bigger list
+        int skip = abs(lenA - lenB);
+
+        if(lenA > lenB){
+            while(skip--)
+                headA = headA->next;
+        }
+        else{
+            while(skip--)
+                headB = headB->next;
+        }
+
+        //Traversing the list until both the pointers point the same node
+        while(headA != headB){
+            headA = headA->next;
+            headB = headB->next;
+        }
+
+        return headA;
+ 
+    }
 };
